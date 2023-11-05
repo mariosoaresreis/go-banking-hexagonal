@@ -25,7 +25,7 @@ func (db ClienteRepositoryDb) FindAll(status string) ([]Cliente, error) {
 	}
 
 	if err != nil {
-		log.Println("Error while querying clientes table " + err.Error())
+		log.Println("Erro ao obter dados da tabela clientes " + err.Error())
 		return nil, err
 	}
 
