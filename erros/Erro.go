@@ -1,10 +1,17 @@
-package Erros
+package erros
 
 import "net/http"
 
 type ApplicationError struct {
-	Codigo   int
-	Mensagem string
+	Codigo   int    `json: ",omitempty"`
+	Mensagem string `json: mensagem`
+}
+
+func (e ApplicationError) Texto() *ApplicationError {
+	return &ApplicationError{
+		Mensagem: e.Mensagem,
+	}
+
 }
 
 func NewNotFoundError(mensagem string) *ApplicationError {
