@@ -5,7 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"github.com/mariosoaresreis/go-banking-hexagonal/erros"
-	"log"
+	"github.com/mariosoaresreis/go-banking-hexagonal/logger"
 )
 
 type ClienteRepositoryDb struct {
@@ -25,7 +25,7 @@ func (db ClienteRepositoryDb) FindAll(status string) ([]Cliente, *erros.Applicat
 	}
 
 	if err != nil {
-		log.Println("Erro ao obter dados da tabela clientes " + err.Error())
+		logger.Error("Erro ao obter dados da tabela clientes " + err.Error())
 		return nil, erros.NewUnexpectedError("Erro inesperado do banco de dados")
 	}
 
@@ -42,7 +42,7 @@ func (db ClienteRepositoryDb) FindById(id string) (*Cliente, *erros.ApplicationE
 		if err == sql.ErrNoRows {
 			return nil, erros.NewNotFoundError("Cliente não encontrado!")
 		} else {
-			log.Fatal("Error while scanning customer " + err.Error())
+			logger.Error("Error while scanning customer " + err.Error())
 			return nil, erros.NewUnexpectedError("Erro inesperado do banco de dados")
 		}
 	}

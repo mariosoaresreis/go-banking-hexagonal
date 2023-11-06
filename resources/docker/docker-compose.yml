@@ -1,17 +1,15 @@
 version: '3'
 services:
-  mysql:
-    image: mysql:5.6.27
-    ports:
-      - "127.0.0.1:3306:3306"
-    volumes:
-      - mysqldata:/var/lib/mysql
-      - ./initdb:/docker-entrypoint-initdb.d
-    container_name: mysql
+  db:
+    image: mysql:latest
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: pass
-      TZ: "Brazil/East"
-
-volumes:
-  mysqldata:
-    driver: local
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1Us3rP@ss
+      MYSQL_DATABASE: banking
+      MYSQL_ROOT_PASSWORD: R00tP@ss
+      TZ: TZ=America/Sao_Paulo
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/bat/work/workspace/mysql3:/var/lib/mysql
