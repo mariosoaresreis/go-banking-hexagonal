@@ -1,4 +1,4 @@
-module GoBanking
+module github.com/mariosoaresreis/go-banking-hexagonal
 
 go 1.21
 

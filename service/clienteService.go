@@ -1,9 +1,9 @@
 package service
 
 import (
-	"GoBanking/domain"
-	"GoBanking/dto"
-	"GoBanking/erros"
+	"github.com/mariosoaresreis/go-banking-hexagonal/domain"
+	"github.com/mariosoaresreis/go-banking-hexagonal/dto"
+	"github.com/mariosoaresreis/go-banking-hexagonal/erros"
 )
 
 type ClienteService interface {

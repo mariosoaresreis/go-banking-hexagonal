@@ -1,11 +1,11 @@
 package app
 
 import (
-	"GoBanking/domain"
-	"GoBanking/service"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
+	"github.com/mariosoaresreis/go-banking-hexagonal/domain"
+	"github.com/mariosoaresreis/go-banking-hexagonal/service"
 	"log"
 	"net/http"
 	"os"

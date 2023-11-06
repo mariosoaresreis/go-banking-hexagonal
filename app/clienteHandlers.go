@@ -1,10 +1,10 @@
 package app
 
 import (
-	"GoBanking/service"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/mariosoaresreis/go-banking-hexagonal/service"
 	"net/http"
 )
 

@@ -1,8 +1,8 @@
 package domain
 
 import (
-	"GoBanking/dto"
-	"GoBanking/erros"
+	"github.com/mariosoaresreis/go-banking-hexagonal/dto"
+	"github.com/mariosoaresreis/go-banking-hexagonal/erros"
 )
 
 type Cliente struct {

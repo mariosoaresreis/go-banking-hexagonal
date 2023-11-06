@@ -1,10 +1,10 @@
 package domain
 
 import (
-	"GoBanking/erros"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/mariosoaresreis/go-banking-hexagonal/erros"
 	"log"
 )
 

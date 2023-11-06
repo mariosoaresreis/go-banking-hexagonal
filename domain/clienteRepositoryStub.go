@@ -1,6 +1,6 @@
 package domain
 
-import "GoBanking/service"
+import "github.com/mariosoaresreis/go-banking-hexagonal/service"
 
 type ClienteRepositoryStub struct {
 	clientes []Cliente

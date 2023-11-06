@@ -1,6 +1,6 @@
 package main
 
-import "GoBanking/app"
+import "github.com/mariosoaresreis/go-banking-hexagonal/app"
 
 func main() {
 	app.Start()
