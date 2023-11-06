@@ -1,8 +1,8 @@
 package domain
 
 import (
+	"GoBanking/erros"
 	"database/sql"
-	"errors"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"log"
@@ -12,7 +12,7 @@ type ClienteRepositoryDb struct {
 	client *sqlx.DB
 }
 
-func (db ClienteRepositoryDb) FindAll(status string) ([]Cliente, error) {
+func (db ClienteRepositoryDb) FindAll(status string) ([]Cliente, *erros.ApplicationError) {
 	var err error
 	clientes := make([]Cliente, 0)
 
@@ -26,13 +26,13 @@ func (db ClienteRepositoryDb) FindAll(status string) ([]Cliente, error) {
 
 	if err != nil {
 		log.Println("Erro ao obter dados da tabela clientes " + err.Error())
-		return nil, err
+		return nil, erros.NewUnexpectedError("Erro inesperado do banco de dados")
 	}
 
 	return clientes, nil
 }
 
-func (db ClienteRepositoryDb) FindById(id string) (*Cliente, error) {
+func (db ClienteRepositoryDb) FindById(id string) (*Cliente, *erros.ApplicationError) {
 	clienteSql := "select customer_id, name, city, zipcode, date_of_birth, status from customers where customer_id = ?"
 
 	var c Cliente
@@ -40,10 +40,10 @@ func (db ClienteRepositoryDb) FindById(id string) (*Cliente, error) {
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, errors.New("Cliente não encontrado")
+			return nil, erros.NewNotFoundError("Cliente não encontrado!")
 		} else {
 			log.Fatal("Error while scanning customer " + err.Error())
-			return nil, errors.New("Erro inesperado do banco de dados")
+			return nil, erros.NewUnexpectedError("Erro inesperado do banco de dados")
 		}
 	}
 	return &c, nil

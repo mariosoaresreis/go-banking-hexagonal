@@ -1,20 +1,23 @@
 package service
 
-import "GoBanking/domain"
+import (
+	"GoBanking/domain"
+	"GoBanking/erros"
+)
 
 type ClienteService interface {
-	GetAllClientes() ([]domain.Cliente, error)
-	GetCliente(id string) (*domain.Cliente, error)
+	GetAllClientes(string) ([]domain.Cliente, *erros.ApplicationError)
+	GetCliente(id string) (*domain.Cliente, *erros.ApplicationError)
 }
 
 type DefaultClienteService struct {
 	Repo domain.ClienteRepository
 }
 
-func (s DefaultClienteService) GetAllClientes() ([]domain.Cliente, error) {
-	return s.Repo.FindAll("ativo")
+func (s DefaultClienteService) GetAllClientes(status string) ([]domain.Cliente, *erros.ApplicationError) {
+	return s.Repo.FindAll(status)
 }
-func (s DefaultClienteService) GetCliente(id string) (*domain.Cliente, error) {
+func (s DefaultClienteService) GetCliente(id string) (*domain.Cliente, *erros.ApplicationError) {
 	return s.Repo.FindById(id)
 }
 

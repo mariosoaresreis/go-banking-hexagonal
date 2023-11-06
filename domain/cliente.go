@@ -1,5 +1,7 @@
 package domain
 
+import "GoBanking/erros"
+
 type Cliente struct {
 	Id             string
 	Nome           string
@@ -10,6 +12,6 @@ type Cliente struct {
 }
 
 type ClienteRepository interface {
-	FindAll(status string) ([]Cliente, error)
-	FindById(string) (*Cliente, error)
+	FindAll(status string) ([]Cliente, *erros.ApplicationError)
+	FindById(string) (*Cliente, *erros.ApplicationError)
 }
